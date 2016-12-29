@@ -47,6 +47,11 @@ input {
   width: 100%;
 }
 
+.emoji {
+  font-weight: normal;
+  font-family: "Apple Color Emoji","Segoe UI Emoji","NotoColorEmoji","Segoe UI Symbol","Android Emoji","EmojiSymbols";
+}
+
 button {
   border: 2px solid aquamarine;
   padding: .2em;

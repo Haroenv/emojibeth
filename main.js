@@ -1,6 +1,16 @@
 ---
 ---
-var alphabet = {{site.data.alphabet | jsonify}};
+
+var alphabets = {
+  emoji: {
+    data: {{site.data.emoji | jsonify}},
+    lowerCaseOnly: true,
+  },
+  fullwidth: {
+    data: {{site.data.fullwidth | jsonify}},
+    lowerCaseOnly: false,
+  }
+};
 
 /**
  * Convert a character to its emoji equivalent
@@ -8,8 +18,9 @@ var alphabet = {{site.data.alphabet | jsonify}};
  * @return {character}   the equivalent emoji
  */
 function convert(c) {
-  if (alphabet[c.toLowerCase()]) {
-    var possibilities = alphabet[c.toLowerCase()];
+  var alphabet = alphabets[window.currentlySelected].data;
+  if (alphabet[c]) {
+    var possibilities = alphabet[c];
     var index = Math.floor(Math.random() * possibilities.length);
     return possibilities[index];
   } else if (c === " "){
@@ -23,9 +34,18 @@ document.getElementById("input").addEventListener("input", function() {
   var output = document.getElementById('output');
   output.textContent = '';
   var text = document.getElementById("input").value;
+
+  if (alphabets[window.currentlySelected].lowerCaseOnly) {
+    text = text.toLowerCase();
+  }
+
   for (var i of text) {
     output.textContent += convert(i);
   }
+});
+
+document.getElementById("alphabets").addEventListener("change", function() {
+  window.currentlySelected = this.value;
 });
 
 function log(text) {

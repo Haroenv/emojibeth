@@ -66,3 +66,13 @@ button {
   opacity: 0;
   margin: 1em;
 }
+
+
+select {
+  font-size: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid aquamarine;
+  padding: .2em;
+  border-radius: 0;
+}

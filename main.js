@@ -26,7 +26,11 @@ function inputToOutput() {
 
   output.textContent = text.split('').map(convert).join('');
 
-  history.replaceState(text, undefined, location.pathname + '?' + text);
+  history.replaceState(
+    text,
+    undefined,
+    location.pathname + '?' + qs({ text, alphabet: window.currentlySelected })
+  );
 }
 
 var input = document.getElementById('input');
@@ -34,9 +38,13 @@ var input = document.getElementById('input');
 input.addEventListener('input', inputToOutput);
 
 if (location.search.length > 0) {
-  input.value = decodeURIComponent(location.search.substring(1));
+  var state = qs(location.search.substring(1));
+  input.value = state.text;
   input.focus();
+  window.currentlySelected = state.alphabet;
   inputToOutput();
+} else {
+  window.currentlySelected = 'emoji';
 }
 
 document.getElementById('alphabets').addEventListener('change', function() {

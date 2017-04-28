@@ -47,11 +47,11 @@ if (location.search.length > 0) {
   window.currentlySelected = 'emoji';
 }
 
-var alphabets = document.getElementById('alphabets');
+var alphabetSelector = document.getElementById('alphabetSelector');
 
-alphabets.value = window.currentlySelected;
+alphabetSelector.value = window.currentlySelected;
 
-alphabets.addEventListener('change', function() {
+alphabetSelector.addEventListener('change', function() {
   window.currentlySelected = this.value;
   inputToOutput();
 });

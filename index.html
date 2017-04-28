@@ -5,7 +5,7 @@ layout: default
   <input name="input" id="input" cols="30" rows="10" placeholder="Text to convert to emoji" autofocus>
   <p><span id="output" class="emoji"><span></p>
   <button id="copy">copy</button><span id="msg"></span>
-  <select name="alphabets" id="alphabets">
+  <select name="alphabetSelector" id="alphabetSelector">
   {% for alphabet in site.data %}
     <option value="{{alphabet[0]}}">{{alphabet[0]}}</option>
   {% endfor %}

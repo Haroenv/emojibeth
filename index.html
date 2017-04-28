@@ -10,5 +10,17 @@ layout: default
     <option value="{{alphabet[0]}}">{{alphabet[0]}}</option>
   {% endfor %}
   </select>
+  <script>
+window.alphabets = {
+  emoji: {
+    data: {{site.data.emoji | jsonify}},
+    lowerCaseOnly: true,
+  },
+  fullwidth: {
+    data: {{site.data.fullwidth | jsonify}},
+    lowerCaseOnly: false,
+  }
+};
+  </script>
   <div><a href="https://haroen.me/emojibeth">haroen.me/emojibeth</a></div>
 </main>

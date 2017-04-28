@@ -1,30 +1,16 @@
----
----
-
-var alphabets = {
-  emoji: {
-    data: {{site.data.emoji | jsonify}},
-    lowerCaseOnly: true,
-  },
-  fullwidth: {
-    data: {{site.data.fullwidth | jsonify}},
-    lowerCaseOnly: false,
-  }
-};
-
 /**
  * Convert a character to its emoji equivalent
  * @param  {character} c the character to convert
  * @return {character}   the equivalent emoji
  */
 function convert(c) {
-  var alphabet = alphabets[window.currentlySelected].data;
+  var alphabet = window.alphabets[window.currentlySelected].data;
   if (alphabet[c]) {
     var possibilities = alphabet[c];
     var index = Math.floor(Math.random() * possibilities.length);
     return possibilities[index];
-  } else if (c === " "){
-    return "　"; // jekyll doesn't allow spaces as json keys
+  } else if (c === ' ') {
+    return '　'; // jekyll doesn't allow spaces as json keys
   } else {
     return c;
   }
@@ -33,9 +19,9 @@ function convert(c) {
 function inputToOutput() {
   var output = document.getElementById('output');
   output.textContent = '';
-  var text = document.getElementById("input").value;
+  var text = document.getElementById('input').value;
 
-  if (alphabets[window.currentlySelected].lowerCaseOnly) {
+  if (window.alphabets[window.currentlySelected].lowerCaseOnly) {
     text = text.toLowerCase();
   }
 
@@ -43,21 +29,24 @@ function inputToOutput() {
     output.textContent += convert(i);
   }
 
-  history.replaceState(text, undefined, location.pathname + '?' + text)
+  history.replaceState(text, undefined, location.pathname + '?' + text);
 }
 
-document.getElementById("input").addEventListener("input", inputToOutput());
+var input = document.getElementById('input');
+
+input.addEventListener('input', inputToOutput);
 
 if (location.search.length > 0) {
-  document.getElementById("input").innerText = location.substring(1);
+  input.value = decodeURIComponent(location.search.substring(1));
+  input.focus();
   inputToOutput();
 }
 
-document.getElementById("alphabets").addEventListener("change", function() {
+document.getElementById('alphabets').addEventListener('change', function() {
   window.currentlySelected = this.value;
 });
 
-document.getElementById("output").addEventListener("click", function() {
+document.getElementById('output').addEventListener('click', function() {
   selectOutput();
 });
 

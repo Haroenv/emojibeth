@@ -48,6 +48,10 @@ document.getElementById("alphabets").addEventListener("change", function() {
   window.currentlySelected = this.value;
 });
 
+document.getElementById("output").addEventListener("click", function() {
+  selectOutput();
+});
+
 function log(text) {
   msgText.style.opacity = 1;
   msgText.innerHTML = text;
@@ -59,17 +63,20 @@ function log(text) {
   }, 2000);
 }
 
+function selectOutput() {
+  var output = document.getElementById('output');
+  var range = document.createRange();
+  range.selectNode(output);
+  window.getSelection().addRange(range);
+}
+
 // copying
 // https://developers.google.com/web/updates/2015/04/cut-and-copy-commands?hl=en
 var copyBtn = document.getElementById('copy');
 copyBtn.disabled = !document.queryCommandSupported('copy');
 var msgText = document.getElementById('msg');
 copyBtn.addEventListener('click', function(event) {
-  // Select the email link anchor text
-  var output = document.getElementById('output');
-  var range = document.createRange();
-  range.selectNode(output);
-  window.getSelection().addRange(range);
+  selectOutput();
 
   try {
     // Now that we've selected the anchor text, execute the copy command

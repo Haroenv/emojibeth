@@ -44,6 +44,7 @@ if (location.search.length > 0) {
 
 document.getElementById('alphabets').addEventListener('change', function() {
   window.currentlySelected = this.value;
+  inputToOutput();
 });
 
 document.getElementById('output').addEventListener('click', function() {

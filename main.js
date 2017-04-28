@@ -40,6 +40,7 @@ input.addEventListener('input', inputToOutput);
 if (location.search.length > 0) {
   var state = qs(location.search.substring(1));
   input.value = state.text;
+  input.focus();
   window.currentlySelected = state.alphabet;
   inputToOutput();
 } else {

@@ -18,16 +18,13 @@ function convert(c) {
 
 function inputToOutput() {
   var output = document.getElementById('output');
-  output.textContent = '';
   var text = document.getElementById('input').value;
 
   if (window.alphabets[window.currentlySelected].lowerCaseOnly) {
     text = text.toLowerCase();
   }
 
-  for (var i of text) {
-    output.textContent += convert(i);
-  }
+  output.textContent = text.split('').map(convert).join('');
 
   history.replaceState(text, undefined, location.pathname + '?' + text);
 }

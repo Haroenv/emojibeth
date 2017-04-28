@@ -30,7 +30,7 @@ function convert(c) {
   }
 }
 
-document.getElementById("input").addEventListener("input", function() {
+function inputToOutput() {
   var output = document.getElementById('output');
   output.textContent = '';
   var text = document.getElementById("input").value;
@@ -42,7 +42,16 @@ document.getElementById("input").addEventListener("input", function() {
   for (var i of text) {
     output.textContent += convert(i);
   }
-});
+
+  history.replaceState(text, undefined, location.pathname + '?' + text)
+}
+
+document.getElementById("input").addEventListener("input", inputToOutput());
+
+if (location.search.length > 0) {
+  document.getElementById("input").innerText = location.substring(1);
+  inputToOutput();
+}
 
 document.getElementById("alphabets").addEventListener("change", function() {
   window.currentlySelected = this.value;

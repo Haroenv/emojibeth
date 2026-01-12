@@ -10,7 +10,7 @@ function convert(c) {
     var index = Math.floor(Math.random() * possibilities.length);
     return possibilities[index];
   } else if (c === ' ') {
-    return '　'; // jekyll doesn't allow spaces as json keys
+    return '　'; // jekyll doesn't allow spaces as json keys
   } else {
     return c;
   }
@@ -51,21 +51,21 @@ var alphabetSelector = document.getElementById('alphabetSelector');
 
 alphabetSelector.value = window.currentlySelected;
 
-alphabetSelector.addEventListener('change', function() {
+alphabetSelector.addEventListener('change', function () {
   window.currentlySelected = this.value;
   inputToOutput();
 });
 
-document.getElementById('output').addEventListener('click', function() {
+document.getElementById('output').addEventListener('click', function () {
   selectOutput();
 });
 
 function log(text) {
   msgText.style.opacity = 1;
   msgText.innerHTML = text;
-  setTimeout(function() {
+  setTimeout(function () {
     msgText.style.opacity = 0;
-    setTimeout(function() {
+    setTimeout(function () {
       msgText.innerHTML = '';
     }, 200);
   }, 2000);
@@ -83,7 +83,7 @@ function selectOutput() {
 var copyBtn = document.getElementById('copy');
 copyBtn.disabled = !document.queryCommandSupported('copy');
 var msgText = document.getElementById('msg');
-copyBtn.addEventListener('click', function(event) {
+copyBtn.addEventListener('click', function (event) {
   selectOutput();
 
   try {
